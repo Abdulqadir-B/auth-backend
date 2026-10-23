@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      // Keep the hashed password out of normal user queries.
       select: false
     }
   },
@@ -21,6 +22,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+// Hash a new or changed password before MongoDB stores the user document.
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) {
     return;
