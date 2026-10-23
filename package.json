@@ -1,0 +1,22 @@
+{
+  "name": "jwt-authentication-backend",
+  "version": "1.0.0",
+  "description": "A stateless JWT authentication backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "authentication",
+    "jwt",
+    "express"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
