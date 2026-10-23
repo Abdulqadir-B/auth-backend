@@ -3,6 +3,7 @@ import { port } from './config/env.js';
 import { connectDatabase } from './config/database.js';
 import { authRouter } from './routes/authRoutes.js';
 import { userRouter } from './routes/userRoutes.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
@@ -16,6 +17,14 @@ app.get('/health', (request, response) => {
     message: 'Authentication API is running'
   });
 });
+
+app.use((request, response) => {
+  response.status(404).json({
+    message: 'Route not found'
+  });
+});
+
+app.use(errorHandler);
 
 const startServer = async () => {
   await connectDatabase();
