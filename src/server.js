@@ -1,5 +1,6 @@
 import express from 'express';
 import { port } from './config/env.js';
+import { connectDatabase } from './config/database.js';
 
 const app = express();
 
@@ -12,6 +13,12 @@ app.get('/health', (request, response) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+const startServer = async () => {
+  await connectDatabase();
+
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+};
+
+startServer();
