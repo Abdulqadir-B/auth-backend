@@ -1,10 +1,14 @@
 import express from 'express';
 import { port } from './config/env.js';
 import { connectDatabase } from './config/database.js';
+import { authRouter } from './routes/authRoutes.js';
+import { userRouter } from './routes/userRoutes.js';
 
 const app = express();
 
 app.use(express.json());
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 
 app.get('/health', (request, response) => {
   response.json({
